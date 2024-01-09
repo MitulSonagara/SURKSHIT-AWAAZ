@@ -22,17 +22,6 @@ hbs.registerHelper('eq', function (v1, v2) {
 
 app.use("", manageQuestionsRoute)
 
-//DataBase Connection
-const username = process.env.USERNAME
-const password = encodeURIComponent(process.env.PASSWORD)
-
-// main().catch((err) => console.log(err));
-
-// async function main() {
-//     await mongoose.connect(`mongodb+srv://${username}:${password}@clustor0.rorvcgj.mongodb.net/?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
-//     console.log("Database connected");
-// }
-
 mongoose.connect( 
     process.env.MONGO_URL)
     .then(() => {

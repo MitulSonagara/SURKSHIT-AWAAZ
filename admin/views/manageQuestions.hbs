@@ -1,0 +1,58 @@
+<!-- manage-questions.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <main id="main-doc">
+        <section id="introduction" class="main-section">
+            <h1>Manage Questions</h1>
+            <ul>
+                {{#each questions}}
+                <li>
+                    {{this.questionText}}
+                    {{#if (eq this.questionType 'multiple-choice')}}
+                    <ul>
+                        {{#each this.options}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+            <div>
+                <button onclick="addQuestion()">Add Question</button>
+                <button onclick="deleteQuestion()">Delete Question</button>
+
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        // Function to add a new question
+        function addQuestion() {
+            // Redirect to the page where administrators can add a new question
+            window.location.href = '/manageQuestions/addQuestion';
+        }
+
+        // Function to delete a question (You can implement this functionality)
+        function deleteQuestion(questionId) {
+            window.location.href = '/manageQuestions/deleteQuestion';
+            // Implement this function to allow administrators to delete the selected question
+        }
+    </script>
+
+</body>
+
+</html>
+<script src="/public/js/dashboard.js"></script>

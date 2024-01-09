@@ -1,0 +1,36 @@
+<!-- manage-questions.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <main id="main-doc">
+        <section id="introduction" class="main-section">
+
+
+            <h1>Delete a Question</h1>
+            <form action="/manageQuestions/deleteQuestion" method="POST">
+                <ul>
+                    {{#each questions}}
+                    <li>
+                        <input type="radio" name="questionId" value="{{this._id}}">
+                        {{this.questionText}}
+                    </li>
+                    {{/each}}
+                </ul>
+                <button type="submit">Delete Selected Question</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
+<script src="/public/js/dashboard.js"></script>

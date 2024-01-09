@@ -1,0 +1,55 @@
+<!-- manage-questions.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <main id="main-doc">
+        <section id="introduction" class="main-section">
+
+            <h1>Add a Question</h1>
+            <form action="/manageQuestions/addQuestion" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="questionText">Question Text:</label>
+                    <input type="text" name="questionText" id="questionText">
+                </div>
+                <div class="form-group">
+                    <label for="questionType">Question Type:</label>
+                    <select name="questionType" id="questionType">
+                        <option value="text">Text</option>
+                        <option value="multiple-choice">Multiple Choice</option>
+                    </select>
+                </div>
+                <div class="form-group" id="optionsField" style="display: none;">
+                    <label for="options">Options (comma-separated):</label>
+                    <input type="text" name="options" id="options">
+                </div>
+                <button type="submit">Add Question</button>
+            </form>
+        </section>
+    </main>
+
+
+    <script>
+        document.getElementById('questionType').addEventListener('change', function () {
+            const optionsField = document.getElementById('optionsField');
+            if (this.value === 'multiple-choice') {
+                optionsField.style.display = 'block';
+            } else {
+                optionsField.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+<script src="/public/js/dashboard.js"></script>

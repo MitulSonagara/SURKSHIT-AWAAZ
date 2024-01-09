@@ -14,4 +14,34 @@ router.get("/", async (req, res) => {
     }
 })
 
+
+// Example route for handling feedback submission
+router.post('/feedback', async (req, res) => {
+    const feedbackData = req.body.questions;
+    const { district, policeStation, remarks } = req.body;
+
+    const feedbackArray = [];
+
+    for (const questionId in feedbackData) {
+        const questionText = feedbackData[questionId].questionText;
+        const response = feedbackData[questionId].response;
+
+        feedbackArray.push({
+            questionText,
+            response,
+        });
+    }
+
+    const feedbackDocument = new feedbackResponses({        
+        district,
+        policeStation,
+        feedback: feedbackArray,
+        remarks,
+        type:"positive",
+    });
+
+    await feedbackDocument.save()
+    res.send("thanks");
+});
+
 module.exports = router

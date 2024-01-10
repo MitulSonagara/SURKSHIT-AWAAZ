@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const FeedbackQuestion = require('../models/feedbackQuestions');
 const feedbackResponses = require("../models/feedbackResponses")
+const { execSync } = require('child_process');
 
 router.get("/", async (req, res) => {
     try {
@@ -32,16 +33,47 @@ router.post('/feedback', async (req, res) => {
         });
     }
 
-    const feedbackDocument = new feedbackResponses({        
+    // let sentimentLabel
+    
+    // exec(`python sentimentAnalysis.py "${remarks}"`, (error, stdout, stderr) => {
+    //     if (error) {
+    //         console.error(`Error: ${error.message}`);
+    //         return res.status(500).send('Internal Server Error');
+    //     }
+
+    //     sentimentLabel = stdout.trim();
+    // });
+
+    const stdout = execSync(`python sentimentAnalysis.py "${remarks}"`, { encoding: 'utf-8' });
+
+    const sentimentLabel = stdout.trim();
+
+    const feedbackDocument = new feedbackResponses({
         district,
         policeStation,
         feedback: feedbackArray,
         remarks,
-        type:"positive",
+        type: sentimentLabel,
     });
 
     await feedbackDocument.save()
     res.send("thanks");
+});
+
+
+router.post('/feedback', (req, res) => {
+    const inputText = req.body.remarks;
+
+    // Call the Python script with the input text
+    exec(`python sentimentAnalysis.py "${inputText}"`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error: ${error.message}`);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        const sentimentLabel = stdout.trim();
+        res.send(`Sentiment Label: ${sentimentLabel}`);
+    });
 });
 
 module.exports = router

@@ -3,10 +3,12 @@ const router = express.Router();
 const passport = require('passport');
 const uuid = require('uuid');
 const Admin = require('../models/authorities');
+const Stations = require("../models/stations")
 
 // Signup Route
-router.get('/createAuthority', (req, res) => {
-    res.render('createAuthority');
+router.get('/createAuthority', async (req, res) => {
+    const stations =await Stations.find({})
+    res.render('createAuthority',{stations});
 });
 
 router.post('/createAuthority', async (req, res, next) => {

@@ -10,6 +10,7 @@ require('dotenv').config()
 const manageQuestionsRoute = require("./routes/manageQuestions")
 const dashboardRoute = require("./routes/dashboard")
 const createAuthorityRoute = require("./routes/createAuthority")
+const viewFeedbacksRoute = require("./routes/viewFeedbacks")
 const loginRoute = require("./routes/login")
 const Admin = require("./models/authorities")
 
@@ -44,6 +45,7 @@ app.use("", manageQuestionsRoute)
 app.use("", createAuthorityRoute)
 app.use('', dashboardRoute)
 app.use("", loginRoute)
+app.use("", viewFeedbacksRoute)
 
 mongoose.connect( 
     process.env.MONGO_URL)

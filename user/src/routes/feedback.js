@@ -33,17 +33,6 @@ router.post('/feedback', async (req, res) => {
         });
     }
 
-    // let sentimentLabel
-    
-    // exec(`python sentimentAnalysis.py "${remarks}"`, (error, stdout, stderr) => {
-    //     if (error) {
-    //         console.error(`Error: ${error.message}`);
-    //         return res.status(500).send('Internal Server Error');
-    //     }
-
-    //     sentimentLabel = stdout.trim();
-    // });
-
     const stdout = execSync(`python sentimentAnalysis.py "${remarks}"`, { encoding: 'utf-8' });
 
     const sentimentLabel = stdout.trim();

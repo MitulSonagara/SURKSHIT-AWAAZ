@@ -1,8 +1,15 @@
 {{>header title="feedback"}}
+
+<h1></h1>
+
 <div class="flex item-center justify-center h-full">
+    
     <form class="max-w-sm mx-auto p-5 m-5 w-96" method="post" action="/feedback">
-        <input type="hidden" name="district" value="ahmedabad">
-        <input type="hidden" name="policeStation" value="chandkheda">
+    <h1
+        class="mb-4 text-2xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">
+        {{stationData.name}}</h1>
+            <input type="hidden" name="stationId" value="{{stationId}}">
+
         {{#each questions}}
         <div class="mb-5">
             <label for="{{this.questionId}}"

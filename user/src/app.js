@@ -16,7 +16,7 @@ app.set("view engine", "hbs");
 app.set("views", "views");
 hbs.registerPartials("views/partials");
 
-app.use("",feedbackRoute)
+app.use("", feedbackRoute)
 
 mongoose.connect(
     process.env.MONGO_URL)

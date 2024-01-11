@@ -36,6 +36,25 @@ hbs.registerPartials("views/partials");
 hbs.registerHelper('eq', function (v1, v2) {
     return v1 === v2;
 });
+hbs.registerHelper('gt', function (v1, v2) {
+    return v1 > v2;
+});
+hbs.registerHelper('add', function (v1, v2) {
+    return v1 + v2;
+});
+hbs.registerHelper('subtract', function (v1, v2) {
+    return v1 - v2;
+});
+hbs.registerHelper('lt', function (v1, v2) {
+    return v1 < v2;
+});
+hbs.registerHelper('range', function (start, end) {
+    const result = [];
+    for (let i = start; i <= end; i++) {
+        result.push(i);
+    }
+    return result;
+});
 
 passport.use(Admin.createStrategy());
 passport.serializeUser(Admin.serializeUser());

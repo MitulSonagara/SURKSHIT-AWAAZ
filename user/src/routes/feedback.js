@@ -2,13 +2,18 @@ const express = require("express")
 const router = express.Router()
 const FeedbackQuestion = require('../models/feedbackQuestions');
 const feedbackResponses = require("../models/feedbackResponses")
+const stations = require("../models/stations")
 const { execSync } = require('child_process');
+const mongoose = require("mongoose");
 
 router.get("/", async (req, res) => {
     try {
         // Retrieve questions from the database
+        const stationId = req.query.stationId
+        const stationData = await stations.findOne({ "_id": stationId })
+        // console.log(stationData.name)
         const questions = await FeedbackQuestion.find()
-        res.render('feedback', { questions });
+        res.render('feedback', { questions, stationId, stationData });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -19,7 +24,8 @@ router.get("/", async (req, res) => {
 // Example route for handling feedback submission
 router.post('/feedback', async (req, res) => {
     const feedbackData = req.body.questions;
-    const { district, policeStation, remarks } = req.body;
+    const { remarks } = req.body;
+    const stationId = req.body.stationId
 
     const feedbackArray = [];
 
@@ -38,8 +44,7 @@ router.post('/feedback', async (req, res) => {
     const sentimentLabel = stdout.trim();
 
     const feedbackDocument = new feedbackResponses({
-        district,
-        policeStation,
+        stationId,
         feedback: feedbackArray,
         remarks,
         type: sentimentLabel,

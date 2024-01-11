@@ -7,9 +7,25 @@ const Stations = require("../models/stations")
 
 // Signup Route
 router.get('/createAuthority', async (req, res) => {
-    const stations =await Stations.find({})
-    res.render('createAuthority',{stations});
+    try {
+        const districts = await Stations.distinct('district');
+        res.render('createAuthority', { districts });
+    } catch (error) {
+        console.error('Error fetching districts:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+
+router.get('/stations', async (req, res) => {
+    try {
+        const district = req.query.district;
+        const stations = await Stations.find({ district });
+        res.json(stations);
+    } catch (error) {
+        console.error('Error fetching stations:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 router.post('/createAuthority', async (req, res, next) => {
     try {

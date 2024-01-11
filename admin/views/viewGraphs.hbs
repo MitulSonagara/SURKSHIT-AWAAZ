@@ -1,0 +1,81 @@
+{{>header}}
+{{>sidebar}}
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="py-6" id="pie-chart"></div>            
+        </div>
+        
+        <script>
+            
+            // ApexCharts options and config
+            window.addEventListener("load", function () {
+                const getChartOptions = () => {
+                    return {
+                        series:[{{ percentages }}] ,
+                        colors: ["#1C64F2", "#16BDCA", "#9061F9"],
+                        chart: {
+                            height: 420,
+                            width: "100%",
+                            type: "pie",
+                        },
+                        stroke: {
+                            colors: ["white"],
+                            lineCap: "",
+                        },
+                        plotOptions: {
+                            pie: {
+                                labels: {
+                                    show: true,
+                                },
+                                size: "100%",
+                                dataLabels: {
+                                    offset: -25
+                                }
+                            },
+                        },
+                        labels: ["Positive Feedbacks", "Negative Feedbacks","Neutral Feedbacks"],
+                        dataLabels: {
+                            enabled: true,
+                            style: {
+                                fontFamily: "Inter, sans-serif",
+                            },
+                        },
+                        legend: {
+                            position: "bottom",
+                            fontFamily: "Inter, sans-serif",
+                        },
+                        yaxis: {
+                            labels: {
+                                formatter: function (value) {
+                                    return value + "%"
+                                },
+                            },
+                        },
+                        xaxis: {
+                            labels: {
+                                formatter: function (value) {
+                                    return value + "%"
+                                },
+                            },
+                            axisTicks: {
+                                show: false,
+                            },
+                            axisBorder: {
+                                show: false,
+                            },
+                        },
+                    }
+                }
+
+                if (document.getElementById("pie-chart") && typeof ApexCharts !== 'undefined') {
+                    const chart = new ApexCharts(document.getElementById("pie-chart"), getChartOptions());
+                    chart.render();
+                }
+            });
+        </script>
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+{{>footer}}

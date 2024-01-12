@@ -6,17 +6,27 @@ const stations = require("../models/stations")
 const { execSync } = require('child_process');
 const mongoose = require("mongoose");
 
-router.get("/", async (req, res) => {
+router.get("/giveFeedback", async (req, res) => {
     try {
-        // Retrieve questions from the database
-        const stationId = req.query.stationId
-        const stationData = await stations.findOne({ "_id": stationId })
-        // console.log(stationData.name)
+        const districts = await stations.distinct('district')
+
         const questions = await FeedbackQuestion.find()
-        res.render('feedback', { questions, stationId, stationData });
+        // console.log(questions)
+        res.render('giveFeedback', { questions,  districts });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
+    }
+})
+
+router.get('/stations', async (req, res) => {
+    try {
+        const district = req.query.district;
+        const station = await stations.find({ district });
+        res.json(station);
+    } catch (error) {
+        console.error('Error fetching stations:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 })
 
@@ -53,21 +63,5 @@ router.post('/feedback', async (req, res) => {
     await feedbackDocument.save()
     res.send("thanks");
 });
-
-
-// router.post('/feedback', (req, res) => {
-//     const inputText = req.body.remarks;
-
-//     // Call the Python script with the input text
-//     exec(`python sentimentAnalysis.py "${inputText}"`, (error, stdout, stderr) => {
-//         if (error) {
-//             console.error(`Error: ${error.message}`);
-//             return res.status(500).send('Internal Server Error');
-//         }
-
-//         const sentimentLabel = stdout.trim();
-//         res.send(`Sentiment Label: ${sentimentLabel}`);
-//     });
-// });
 
 module.exports = router

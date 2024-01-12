@@ -1,0 +1,228 @@
+{{>header}}
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+            <span class="self-center text-3xl font-extrabold whitespace-nowrap dark:text-white">Surakshit </span>
+            <span class="self-center text-3xl font-extrabold whitespace-nowrap dark:text-white"> Awaaz
+                2.0</span>
+        </div>
+
+        <div class="flex md:order-2 space-x-2 md:space-x-0 rtl:space-x-reverse">
+            <button type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
+                started</button>
+            <button data-collapse-toggle="navbar-sticky" type="button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+            <ul
+                class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                        aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a href="#about"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                </li>
+                <li>
+                    <a href="#features"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Features</a>
+                </li>
+                <li>
+                    <a href="#benefits"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Benefits</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<section id="home"
+    class="mt-5 pt-5 bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+    <div class="px-4 mx-auto max-w-screen-xl text-center py-24 mt-5 lg:py-56">
+        <h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-white md:text-4xl lg:text-5xl">
+            Empowering Communities, Strengthening Safety</h1>
+        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Report, Connect, Impact - Your
+            Voice Matters</p>
+        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+            <a href="#"
+                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                Get started
+                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+            </a>
+            <a href="#about"
+                class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
+                Learn more
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="p-5">
+    <div class="text-center mt-5">
+
+        <h1
+            class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            Welcome to <span class="text-blue-600 dark:text-blue-500"> Surakshit
+                Awaaz 2.0</span></h1>
+        <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">A
+            community-driven police feedback system designed to foster collaboration and enhance safety. We believe in
+            the power
+            of citizen engagement to build stronger, safer neighborhoods. Our platform provides a secure space for you
+            to share your
+            feedback, report incidents, and actively contribute to the well-being of your community.</p>
+    </div>
+
+
+</section>
+
+<hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
+<section id="features">
+    <div class="text-center mt-5">
+        <h2 class="text-5xl font-bold dark:text-white mb-4">Key Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-5">
+            <!-- Feature 1 -->
+            <div
+                class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Anonymous Reporting
+                </h3>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Report incidents with confidence, knowing your
+                    identity is protected.</p>
+            </div>
+            <!-- Feature 2 -->
+            <div
+                class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Real-Time Updates</h3>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Stay informed with instant updates on the
+                    progress of your reports.</p>
+            </div>
+            <!-- Feature 3 -->
+            <div
+                class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">User-Friendly Interface
+                </h3>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Easily navigate the platform, making your
+                    feedback process seamless.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
+<section id="how">
+    <div class="text-center mt-5">
+        <h2 class="text-5xl font-bold dark:text-white mb-4">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 lg:gap-8  md:gap-6 gap-4 p-5">
+            <!-- Feature 1 -->
+            <div
+                class="p-6">
+                <h3 class="mb-2 border border-gray-500 rounded-lg w-fit p-2 text-2xl font-semibold tracking-tight text-gray-900  dark:text-gray-400">Step 1
+                </h3>
+                <p class="text-xl text-left font-bold text-gray-700 dark:text-white">Sign Up or Log In</p>
+            </div>
+            <!-- Feature 2 -->
+            <div
+                class="p-6">
+                <h3 class="mb-2 border border-gray-500 rounded-lg w-fit p-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-400">Step 2</h3>
+                <p class="text-xl text-left font-bold text-gray-700 dark:text-white">Select District and Station</p>
+            </div>
+            <!-- Feature 3 -->
+            <div
+                class="p-6">
+                <h3 class="mb-2 border border-gray-500 rounded-lg w-fit p-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-400">Step 3
+                </h3>
+                <p class="text-xl text-left font-bold text-gray-700 dark:text-white">Choose Anonymity</p>
+            </div>
+            <div
+                class="p-6">
+                <h3 class="border border-gray-500 rounded-lg w-fit p-2 mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-400">Step 4
+                </h3>
+                <p class="text-xl text-left font-bold text-gray-700 dark:text-white">Submit Feedback Form</p>
+            </div>
+            <div
+                class="p-6">
+                <h3 class="mb-2 border border-gray-500 rounded-lg w-fit p-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-400">Step 5
+                </h3>
+                <p class="text-xl text-left font-bold text-gray-700 dark:text-white">Stay Informed</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
+<section id="benefits">
+    <div class="text-center mt-5">
+        <h2 class="text-5xl font-bold dark:text-white mb-4">Benefits</h2>
+        <div class="flex items-center justify-center mb-5 mt-5 p-5">
+            <ul class="space-y-4 text-left text-gray-400 dark:text-gray-200 text-bold text-xl">
+                <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5.917 5.724 10.5 15 1.5" />
+                    </svg>
+                    <span>Contribute to a safer and more secure neighborhood.</span>
+                </li>
+                <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5.917 5.724 10.5 15 1.5" />
+                    </svg>
+                    <span>Fill out the feedback form with details and comments.</span>
+                </li>
+                <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5.917 5.724 10.5 15 1.5" />
+                    </svg>
+                    <span>Receive Timely Responses and Resolutions</span>
+                </li>
+                <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5.917 5.724 10.5 15 1.5" />
+                    </svg>
+                    <span>Strengthen the Bond Between Citizens and Law Enforcement</span>
+                </li>
+                <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <svg class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5.917 5.724 10.5 15 1.5" />
+                    </svg>
+                    <span>Anonymously Report Incidents Without Fear</span></span>
+                </li>
+            </ul>
+        </div>
+        
+
+
+    </div>
+</section>
+
+
+{{>footer}}

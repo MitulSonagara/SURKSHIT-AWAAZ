@@ -33,7 +33,7 @@ font1 = ImageFont.truetype(font_path, 85)
 font2 = ImageFont.truetype(font_path, 65)
 
 # Open the template image
-template_img = Image.open("Dark Blue Teal Dynamic Photocentric Tech and Gaming Poster.png")
+template_img = Image.open("template.png")
 draw = ImageDraw.Draw(template_img)
 
 # Position for district name

@@ -1,10 +1,11 @@
 {{>header}}
 {{>sidebar}}
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <form method="post" action="/generateQr">
-            <div class="grid grid-cols-7 gap-2">
-                <div class="col-span-3">
+            <div class="grid grid-cols-1 gap-2 lg:grid-cols-7 md:grid-cols-5">
+                <div class="lg:col-span-3 md:col-span-2">
                     <label for="district" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Select
                         District</label>
                     <select id="district" name="district"
@@ -15,7 +16,7 @@
                         {{/each}}
                     </select>
                 </div>
-                <div class="col-span-3">
+                <div class="lg:col-span-3 md:col-span-2">
                     <label for="station" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Select
                         Station</label>
                     <select id="station" name="station"
@@ -28,9 +29,30 @@
                 <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Generate</button>
                 </div>
-            </div>
         </form>
+{{#if (eq flag 1)}}
+<div  class="h-80 lg:h-[33rem] md:h-[27rem]">
 
+<iframe id="pdfPreview" src="/previewPdf" class="mt-4 w-full min-h-full border border-gray-300"></iframe>
+</div>
+
+<div class="text-center">
+
+<button type="button" id="downloadBtn"
+    class="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Download</button>
+</div>
+            </div>
+
+
+<script>
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+        window.location.href = '/downloadPdf';
+        setTimeout(function () {
+            window.location.href = '/generateQr';
+        }, 1000); // Adjust the delay as needed
+    });
+</script>
+{{/if}}
  
     </div>
 </div>
@@ -74,4 +96,8 @@
         });
 
 </script>
+
+
+
+
 {{>footer}}

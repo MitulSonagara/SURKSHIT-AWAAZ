@@ -2,115 +2,123 @@
 {{>sidebar}}
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-        <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+        <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 text-center">
+            <h1
+                class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">Total Feedbacks : {{total}}</h1>
             <div class="py-6" id="pie-chart"></div>            
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
         {{#each resultArray}}
-        <p>chart-{{@index}}</p>
         <div class="chart-container" id="chart-{{@index}}">
-            <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="max-w-md w-full h-fit bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+                <p class="text-gray-200 font-semibold">{{this.questionText}}</p>
                 <div class="py-6" id="donut-chart-{{@index}}"></div>
             </div>
         
             <script>
                 // ApexCharts options and config
                 window.addEventListener("load", function () {
+                    const optionsArray = [
+                        {{#each this.options}}
+                        "{{this}}",
+                    {{/ each}}
+                ];
                     const getChartOptions = () => {
                         return {
-                            series: [{{this.count}}],
-                            colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694"],
+                            series: [{{ this.count }}],
+                        colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694","#9061F9"],
                             chart: {
-                                height: 320,
+                            height: 320,
                                 width: "100%",
-                                type: "donut",
-                            },
-                            stroke: {
-                                colors: ["transparent"],
+                                    type: "donut",
+                                },
+                        stroke: {
+                            colors: ["transparent"],
                                 lineCap: "",
-                            },
-                            plotOptions: {
-                                pie: {
-                                    donut: {
-                                        labels: {
-                                            show: true,
+                                },
+                        plotOptions: {
+                            pie: {
+                                donut: {
+                                    labels: {
+                                        show: true,
                                             name: {
-                                                show: true,
+                                            show: true,
                                                 fontFamily: "Inter, sans-serif",
-                                                offsetY: 20,
-                                            },
-                                            total: {
-                                                showAlways: true,
-                                                show: true,
-                                                label: "visitors",
-                                                fontFamily: "Inter, sans-serif",
-                                                formatter: function (w) {
-                                                    const sum = w.globals.seriesTotals.reduce((a, b) => {
-                                                        return a + b
-                                                    }, 0)
-                                                    return `${sum}`
+                                                    offsetY: 20,
                                                 },
-                                            },
-                                            value: {
+                                        total: {
+                                            showAlways: true,
                                                 show: true,
-                                                fontFamily: "Inter, sans-serif",
-                                                offsetY: -20,
-                                                formatter: function (value) {
-                                                    return value 
-                                                },
-                                            },
+                                                    label: "Total Responses",
+                                                        fontFamily: "Inter, sans-serif",
+                                                            formatter: function (w) {
+                                                                const sum = w.globals.seriesTotals.reduce((a, b) => {
+                                                                    return a + b
+                                                                }, 0)
+                                                                return `${sum}`
+                                                            },
                                         },
-                                        size: "80%",
+                                        value: {
+                                            show: true,
+                                                fontFamily: "Inter, sans-serif",
+                                                    offsetY: -20,
+                                                        formatter: function (value) {
+                                                            return value
+                                                        },
+                                        },
                                     },
+                                    size: "80%",
+                                        },
+                            },
+                        },
+                        grid: {
+                            padding: {
+                                top: -2,
+                                    },
+                        },
+                        labels: optionsArray, // Set labels dynamically
+                        dataLabels: {
+                            enabled: false,
                                 },
-                            },
-                            grid: {
-                                padding: {
-                                    top: -2,
-                                },
-                            },
-                            labels: ,
-                            dataLabels: {
-                                enabled: false,
-                            },
-                            legend: {
-                                position: "bottom",
+                        legend: {
+                            position: "bottom",
                                 fontFamily: "Inter, sans-serif",
+                                },
+                        yaxis: {
+                            labels: {
+                                formatter: function (value) {
+                                    return value
+                                },
                             },
-                            yaxis: {
-                                labels: {
-                                    formatter: function (value) {
-                                        return value
+                        },
+                        xaxis: {
+                            labels: {
+                                formatter: function (value) {
+                                    return value
+                                },
+                            },
+                            axisTicks: {
+                                show: false,
                                     },
-                                },
-                            },
-                            xaxis: {
-                                labels: {
-                                    formatter: function (value) {
-                                        return value
+                            axisBorder: {
+                                show: false,
                                     },
-                                },
-                                axisTicks: {
-                                    show: false,
-                                },
-                                axisBorder: {
-                                    show: false,
-                                },
-                            },
-                        }
+                        },
                     }
-
-                    if (document.getElementById("donut-chart-{{@index}}") && typeof ApexCharts !== 'undefined') {
-                        const chart = new ApexCharts(document.getElementById("donut-chart-{{@index}}"), getChartOptions());
-                        chart.render();
-                    }
-                });
+                }
+        
+                        if (document.getElementById("donut-chart-{{@index}}") && typeof ApexCharts !== 'undefined') {
+                    const chart = new ApexCharts(document.getElementById("donut-chart-{{@index}}"), getChartOptions());
+                    chart.render();
+                }
+                    });
             </script>
-
         </div>
         {{/each}}
+        </div>
         
         <script>
-            
             // ApexCharts options and config
             window.addEventListener("load", function () {
                 const getChartOptions = () => {
@@ -137,7 +145,7 @@
                                 }
                             },
                         },
-                        labels: ["Positive Feedbacks", "Negative Feedbacks","Neutral Feedbacks"],
+                        labels: ["Negative Feedbacks", "Neutral Feedbacks","Positive Feedbacks"],
                         dataLabels: {
                             enabled: true,
                             style: {

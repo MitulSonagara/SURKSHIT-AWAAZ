@@ -13,19 +13,15 @@ async function generateResponseCountsFromDB() {
         feedbackResponses.forEach((entry) => {
             entry.feedback.forEach((question) => {
                 const questionKey = question.questionText || 'unknown';
-
                 // Initialize counts for the question if not done yet
                 if (!responseCounts[questionKey]) {
                     responseCounts[questionKey] = {};
                 }
-
                 const response = question.response;
-
                 // Increment the count for the response and question
                 responseCounts[questionKey][response] = (responseCounts[questionKey][response] || 0) + 1;
             });
         });
-
         // Convert the responseCounts object to an array of arrays
         for (const [question, counts] of Object.entries(responseCounts)) {
             const countArray = Object.values(counts);
@@ -41,11 +37,8 @@ async function generateResponseCountsFromDB() {
 
 router.get("/viewgraphs", async (req, res) => {
     try {
-
         const questionData = await FeedbackQuestion.find()
-        console.log(questionData)
- 
-
+        const total = await FeedbackResponses.countDocuments()
         const result = await FeedbackResponses.aggregate([
             {
                 $group: {
@@ -73,28 +66,18 @@ router.get("/viewgraphs", async (req, res) => {
         // Calculate the percentages and create the array
         const percentages = result.map(item => (item.count / totalCount) * 100);
 
-        generateResponseCountsFromDB()
-            .then((responseCountsArray) => {
-                if (responseCountsArray !== null) {
-                    const allCountArrays = responseCountsArray;
+        const counts = await generateResponseCountsFromDB()
 
-                    const resultArray = allCountArrays.map((countArray, index) => {
-                        const question = questionData[index];
-                        return {
-                            questionText: "visitors",
-                            options: `[${question.options.map(option => `"${option}"`).join(',')}]`, 
-                            count: countArray
-                        };
-                    });
+        const resultArray = counts.map((countArray, index) => {
+            const question = questionData[index];
+            return {
+                questionText: question.questionText,
+                options: question.options,
+                count: countArray
+            };
+        });
+        res.render("viewGraphs", { percentages, resultArray, total });
 
-                    console.log("All Count Arrays:", resultArray);
-                    res.render("viewGraphs", { percentages , resultArray});
-
-                    // return allCountArrays
-                }
-            });
-
-        // res.render("viewGraphs", { percentages });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");

@@ -57,6 +57,18 @@ hbs.registerHelper('range', function (start, end) {
     }
     return result;
 });
+hbs.registerHelper('eachPair', function (array1, array2, options) {
+    if (!array1 || !array2 || array1.length !== array2.length) {
+        return options.inverse(this);
+    }
+
+    let result = '';
+    for (let i = 0; i < array1.length; i++) {
+        result += options.fn({ value1: array1[i], value2: array2[i], index: i });
+    }
+
+    return result;
+});
 
 passport.use(Admin.createStrategy());
 passport.serializeUser(Admin.serializeUser());

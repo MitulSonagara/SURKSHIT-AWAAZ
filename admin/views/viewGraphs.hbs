@@ -5,6 +5,109 @@
         <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
             <div class="py-6" id="pie-chart"></div>            
         </div>
+        {{#each resultArray}}
+        <p>chart-{{@index}}</p>
+        <div class="chart-container" id="chart-{{@index}}">
+            <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+                <div class="py-6" id="donut-chart-{{@index}}"></div>
+            </div>
+        
+            <script>
+                // ApexCharts options and config
+                window.addEventListener("load", function () {
+                    const getChartOptions = () => {
+                        return {
+                            series: [{{this.count}}],
+                            colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694"],
+                            chart: {
+                                height: 320,
+                                width: "100%",
+                                type: "donut",
+                            },
+                            stroke: {
+                                colors: ["transparent"],
+                                lineCap: "",
+                            },
+                            plotOptions: {
+                                pie: {
+                                    donut: {
+                                        labels: {
+                                            show: true,
+                                            name: {
+                                                show: true,
+                                                fontFamily: "Inter, sans-serif",
+                                                offsetY: 20,
+                                            },
+                                            total: {
+                                                showAlways: true,
+                                                show: true,
+                                                label: "visitors",
+                                                fontFamily: "Inter, sans-serif",
+                                                formatter: function (w) {
+                                                    const sum = w.globals.seriesTotals.reduce((a, b) => {
+                                                        return a + b
+                                                    }, 0)
+                                                    return `${sum}`
+                                                },
+                                            },
+                                            value: {
+                                                show: true,
+                                                fontFamily: "Inter, sans-serif",
+                                                offsetY: -20,
+                                                formatter: function (value) {
+                                                    return value 
+                                                },
+                                            },
+                                        },
+                                        size: "80%",
+                                    },
+                                },
+                            },
+                            grid: {
+                                padding: {
+                                    top: -2,
+                                },
+                            },
+                            labels: ,
+                            dataLabels: {
+                                enabled: false,
+                            },
+                            legend: {
+                                position: "bottom",
+                                fontFamily: "Inter, sans-serif",
+                            },
+                            yaxis: {
+                                labels: {
+                                    formatter: function (value) {
+                                        return value
+                                    },
+                                },
+                            },
+                            xaxis: {
+                                labels: {
+                                    formatter: function (value) {
+                                        return value
+                                    },
+                                },
+                                axisTicks: {
+                                    show: false,
+                                },
+                                axisBorder: {
+                                    show: false,
+                                },
+                            },
+                        }
+                    }
+
+                    if (document.getElementById("donut-chart-{{@index}}") && typeof ApexCharts !== 'undefined') {
+                        const chart = new ApexCharts(document.getElementById("donut-chart-{{@index}}"), getChartOptions());
+                        chart.render();
+                    }
+                });
+            </script>
+
+        </div>
+        {{/each}}
         
         <script>
             

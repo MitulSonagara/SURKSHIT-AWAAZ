@@ -69,6 +69,15 @@ hbs.registerHelper('eachPair', function (array1, array2, options) {
 
     return result;
 });
+hbs.registerHelper('max', function (a, b) {
+    return Math.max(a, b);
+});
+hbs.registerHelper('min', function (a, b) {
+    return Math.min(a, b);
+});
+hbs.registerHelper('multiply', function (a, b) {
+    return Number(a) * Number(b);
+});
 
 passport.use(Admin.createStrategy());
 passport.serializeUser(Admin.serializeUser());

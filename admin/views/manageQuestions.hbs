@@ -1,42 +1,35 @@
-<!-- manage-questions.hbs -->
-<!DOCTYPE html>
-<html lang="en">
+{{>header}}
+{{>sidebar}}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Dashboard</title>
-</head>
-
-<body>
-    <main id="main-doc">
-        <section id="introduction" class="main-section">
-            <h1>Manage Questions</h1>
-            <ul>
-                {{#each questions}}
-                <li>
-                    {{this.questionText}}
-                    {{#if (eq this.questionType 'multiple-choice')}}
-                    <ul>
-                        {{#each this.options}}
-                        <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
-                    {{/if}}
-                </li>
-                {{/each}}
-            </ul>
-            <div>
-                <button onclick="addQuestion()">Add Question</button>
-                <button onclick="deleteQuestion()">Delete Question</button>
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        <h1
+            class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+            Existing Questions</h1>
+        <ol class="space-y-4 text-gray-500 list-decimal list-inside dark:text-gray-400">
+            {{#each questions}}
+            <li>
+                {{this.questionText}}
+                <ul class="ps-5 mt-2 space-y-1 list-disc list-inside">
+                    {{#each this.options}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{/each}}
+        </ol>
+            <div class="mt-5">
+                <button onclick="addQuestion()"
+                    class="text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                    Question</button>
+                <button onclick="deleteQuestion()" class="text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete Question</button>
 
             </div>
-        </section>
-    </main>
 
+
+    </div>
+    </div> 
+ 
 
     <script>
         // Function to add a new question
@@ -51,8 +44,4 @@
             // Implement this function to allow administrators to delete the selected question
         }
     </script>
-
-</body>
-
-</html>
-<script src="/public/js/dashboard.js"></script>
+{{>footer}}

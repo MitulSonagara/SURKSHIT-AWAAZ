@@ -18,7 +18,7 @@ router.get('/viewFeedbacks', async (req, res) => {
 
     // Pagination setup
     const currentPage = parseInt(req.query.page) || 1;
-    const perPage = 1; // Adjust this value based on your preference
+    const perPage = 10; // Adjust this value based on your preference
     const skip = (currentPage - 1) * perPage;
 
     let query = {};
@@ -64,7 +64,7 @@ router.get('/viewFeedbacks', async (req, res) => {
             $lookup: {
                 from: 'stations',
                 localField: 'stationId',
-                foreignField: '_id',
+                foreignField: 'stationId',
                 as: 'stationData',
             },
         },
@@ -92,6 +92,8 @@ router.get('/viewFeedbacks', async (req, res) => {
             },
         },
     ]);
+
+    console.log(feedbacks)
 
     res.render('viewFeedbacks', { feedbacks, questions, currentPage, totalPages,"cPage":currentPage });
 });

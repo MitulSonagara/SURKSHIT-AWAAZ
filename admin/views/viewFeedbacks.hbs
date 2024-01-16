@@ -54,10 +54,10 @@
 
 
                         <th scope="col" class="px-2 py-3">
-                            DISTRICT
+                            District
                         </th>
                         <th scope="col" class="px-2 py-3">
-                            DISTRICT
+                            Police Station
                         </th>
 
                         {{#each questions}}
@@ -102,38 +102,87 @@
             </table>
         </div>
 
-<div class="text-center">
-        <nav aria-label="Page navigation example">
-            <ul class="inline-flex -space-x-px text-sm">
-                {{#if (gt currentPage 1)}}
-                <li>
-                    <a href="/viewFeedbacks?page={{subtract currentPage 1}}"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        Previous
-                    </a>
-                </li>
-                {{/if}}
+        <div class="text-center">
+            {{!-- <nav aria-label="Page navigation example">
+                <ul class="inline-flex -space-x-px text-sm">
+                    {{#if (gt totalPages 10)}}
+                    {{#if (gt currentPage 5)}}
+                    <li>
+                        <a href="/viewFeedbacks?page=1"
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            1
+                        </a>
+                    </li>
+                    <li>
+                        <span
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg">...</span>
+                    </li>
+                    {{/if}}
+                    {{/if}}
 
-                {{#each (range 1 totalPages)}}
-                <li>
-                    <a href="/viewFeedbacks?page={{this}}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300
-                                {{#if (eq this currentPage)}} text-blue-600 dark:bg-blue-50 hover:bg-blue-100 hover:text-blue-700 {{else}} hover:bg-gray-100 hover:text-gray-700 {{/if}}
-                                dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        {{this}}
-                    </a>
-                </li>
-                {{/each}}
+                    {{#each (range (max 1 (subtract currentPage 4)) (min totalPages (add currentPage 4)))}}
+                    <li>
+                        <a href="/viewFeedbacks?page={{this}}"
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300
+                            {{#if (eq this currentPage)}} text-blue-600 dark:bg-blue-50 hover:bg-blue-100 hover:text-blue-700 {{else}} hover:bg-gray-100 hover:text-gray-700 {{/if}}
+                            dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            {{this}}
+                        </a>
+                    </li>
+                    {{/each}}
 
-                {{#if (lt (add currentPage 1) totalPages)}}
-                <li>
-                    <a href="/viewFeedbacks?page={{add currentPage 1}}"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        Next
-                    </a>
-                </li>
-                {{/if}}
-            </ul>
-        </nav>
+                    {{#if (lt (add currentPage 4) totalPages)}}
+                    <li>
+                        <span
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg">...</span>
+                    </li>
+                    <li>
+                        <a href="/viewFeedbacks?page={{totalPages}}"
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            {{totalPages}}
+                        </a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </nav> --}}
+
+            <div class="flex flex-col items-center">
+                <!-- Help text -->
+                {{!-- <span class="text-sm text-gray-700 dark:text-gray-400">
+                    Showing
+                    <span class="font-semibold text-gray-900 dark:text-white">{{#if (gt totalPages 0)}}{{multiply (add
+                        currentPage
+                        1) perPage}}{{else}}0{{/if}}</span>
+                    to
+                    <span class="font-semibold text-gray-900 dark:text-white">{{#if (gt totalPages 0)}}{{min (multiply
+                        (add
+                        currentPage 1) perPage) totalFeedbacks}}{{else}}0{{/if}}</span>
+                    of
+                    <span class="font-semibold text-gray-900 dark:text-white">{{totalFeedbacks}}</span> Entries
+                </span> --}}
+                <!-- Buttons -->
+                <div class="inline-flex mt-2 xs:mt-0">
+                    {{#if (gt currentPage 1)}}
+                    <form method="get" action="/viewFeedbacks" class="mr-2">
+                        <input type="hidden" name="page" value="{{subtract currentPage 1}}">
+                        <button type="submit"
+                            class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Prev
+                        </button>
+                    </form>
+                    {{/if}}
+                    {{#if (lt (add currentPage 1) totalPages)}}
+                    <form method="get" action="/viewFeedbacks">
+                        <input type="hidden" name="page" value="{{add currentPage 1}}">
+                        <button type="submit"
+                            class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Next
+                        </button>
+                    </form>
+                    {{/if}}
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

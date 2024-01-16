@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
-const feedbackRoute = require("./routes/feedback")
+const feedbackRoute = require("./src/routes/feedback")
 require('dotenv').config()
 
 const app = express();
@@ -27,7 +27,8 @@ mongoose.connect(
         console.log(e);
     })
 
-app.listen(4040, () => {
+const PORT = process.env.PORT || 4040
+
+app.listen(PORT, () => {
     console.log("server started at http://localhost:4040");
 })
-

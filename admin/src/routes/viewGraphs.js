@@ -38,6 +38,7 @@ async function generateResponseCountsFromDB() {
 router.get("/viewgraphs", async (req, res) => {
     try {
         const questionData = await FeedbackQuestion.find()
+        // console.log(questionData)
         const total = await FeedbackResponses.countDocuments()
         const result = await FeedbackResponses.aggregate([
             {

@@ -1,55 +1,37 @@
-<!-- manage-questions.hbs -->
-<!DOCTYPE html>
-<html lang="en">
+{{>header}}
+{{>sidebar}}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Dashboard</title>
-</head>
-
-<body>
-    <main id="main-doc">
-        <section id="introduction" class="main-section">
-
-            <h1>Add a Question</h1>
-            <form action="/manageQuestions/addQuestion" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="questionText">Question Text:</label>
-                    <input type="text" name="questionText" id="questionText">
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        <div
+            class=" dark:border-gray-700 border flex items-center justify-center h-fit p-5 rounded bg-gray-50 dark:bg-gray-800">
+            <form class="max-w-sm mx-auto " method="post" action="/manageQuestions/addQuestion">
+                <h1
+                    class="mb-6 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+                    Add Question</h1>
+                <div class="mb-3">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter
+                        Question Text</label>
+                    <input type="text" id="name" name="questionText"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
                 </div>
-                <div class="form-group">
-                    <label for="questionType">Question Type:</label>
-                    <select name="questionType" id="questionType">
-                        <option value="text">Text</option>
-                        <option value="multiple-choice">Multiple Choice</option>
-                    </select>
+                <div class="mb-3">
+                    <label for="options" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Options (comma-separated):</label>
+                    <input type="text" id="options" name="options"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
                 </div>
-                <div class="form-group" id="optionsField" style="display: none;">
-                    <label for="options">Options (comma-separated):</label>
-                    <input type="text" name="options" id="options">
-                </div>
-                <button type="submit">Add Question</button>
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                    Question</button>
             </form>
-        </section>
-    </main>
+        </div>
 
 
-    <script>
-        document.getElementById('questionType').addEventListener('change', function () {
-            const optionsField = document.getElementById('optionsField');
-            if (this.value === 'multiple-choice') {
-                optionsField.style.display = 'block';
-            } else {
-                optionsField.style.display = 'none';
-            }
-        });
-    </script>
 
-</body>
+    </div>
+</div>
 
-</html>
-<script src="/public/js/dashboard.js"></script>
+
+{{>footer}}

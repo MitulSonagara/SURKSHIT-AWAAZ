@@ -10,7 +10,7 @@ const feedbackQuestionSchema = new mongoose.Schema({
     },
     options: [
         {
-            type: String,
+            type: String,  
         },
     ],
 });

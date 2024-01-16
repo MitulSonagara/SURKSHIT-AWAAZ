@@ -15,6 +15,7 @@ const loginRoute = require("./routes/login")
 const Admin = require("./models/authorities")
 const generateQrRoute = require("./routes/generateQr")
 const viewGraphsRoute = require("./routes/viewGraphs")
+const reportRoute = require("./routes/reports")
 
 const app = express();
 
@@ -69,6 +70,15 @@ hbs.registerHelper('eachPair', function (array1, array2, options) {
 
     return result;
 });
+hbs.registerHelper('max', function (a, b) {
+    return Math.max(a, b);
+});
+hbs.registerHelper('min', function (a, b) {
+    return Math.min(a, b);
+});
+hbs.registerHelper('multiply', function (a, b) {
+    return Number(a) * Number(b);
+});
 
 passport.use(Admin.createStrategy());
 passport.serializeUser(Admin.serializeUser());
@@ -81,6 +91,7 @@ app.use("", loginRoute)
 app.use("", viewFeedbacksRoute)
 app.use("", generateQrRoute)
 app.use("", viewGraphsRoute)
+app.use("", reportRoute)
 
 mongoose.connect( 
     process.env.MONGO_URL)

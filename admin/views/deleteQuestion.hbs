@@ -1,36 +1,35 @@
-<!-- manage-questions.hbs -->
-<!DOCTYPE html>
-<html lang="en">
+{{>header}}
+{{>sidebar}}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Dashboard</title>
-</head>
-
-<body>
-    <main id="main-doc">
-        <section id="introduction" class="main-section">
-
-
-            <h1>Delete a Question</h1>
-            <form action="/manageQuestions/deleteQuestion" method="POST">
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        <div
+            class=" dark:border-gray-700 border flex h-fit p-5 rounded bg-gray-50 dark:bg-gray-800">
+            <form class="w-fit " method="post" action="/manageQuestions/deleteQuestion">
+                <h1
+                    class="mb-6 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+                    Delete Question</h1>
                 <ul>
                     {{#each questions}}
                     <li>
-                        <input type="radio" name="questionId" value="{{this._id}}">
-                        {{this.questionText}}
+                        <div class="flex items-center mb-4">
+                            <input id="{{this._id}}" type="radio" value="{{this._id}}" name="default-radio"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="{{this._id}}"
+                                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{this.questionText}}</label>
+                        </div>
                     </li>
                     {{/each}}
                 </ul>
-                <button type="submit">Delete Selected Question</button>
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete Selected Question</button>
             </form>
-        </section>
-    </main>
-</body>
+        </div>
 
-</html>
-<script src="/public/js/dashboard.js"></script>
+
+
+    </div>
+</div>
+
+
+{{>footer}}

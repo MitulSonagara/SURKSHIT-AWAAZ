@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     try {
         // Retrieve questions from the database
         const stationId = req.query.stationId
-        const stationData = await stations.findOne({ "_id": stationId })
+        const stationData = await stations.findOne({ "stationId": stationId })
         // console.log(stationData.name)
         const questions = await FeedbackQuestion.find()
         res.render('feedback', { questions, stationId, stationData });

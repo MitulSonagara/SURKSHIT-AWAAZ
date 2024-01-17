@@ -18,14 +18,20 @@ hbs.registerPartials("views/partials");
 
 app.use("", feedbackRoute)
 
-mongoose.connect(
-    process.env.MONGO_URL)
-    .then(() => {
+async function startServer() {
+    try {
+        await mongoose.connect(process.env.MONGO_URL);
         console.log("Connected to MongoDB");
-    })
-    .catch((e) => {
-        console.log(e);
-    })
+
+        app.listen(PORT, () => {
+            console.log(`Server started at http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+    }
+}
+
+startServer();
 
 const PORT = process.env.PORT || 4040
 

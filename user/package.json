@@ -2,10 +2,10 @@
   "name": "user",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "node src/app.js -e js,hbs,py"
   },
   "keywords": [],
   "author": "",

@@ -1,3 +1,92 @@
 {{>header}}
 {{>sidebar}}
-{[>footer]}
+
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+
+
+
+        <div class="relative border rounded-lg dark:border-gray-600 overflow-x-auto mb-2">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+
+
+                        <th scope="col" class="px-2 py-3">
+                            District
+                        </th>
+                        <th scope="col" class="px-2 py-3">
+                            Police Station
+                        </th>
+
+                        {{#each questions}}
+                        <th scope="col" class="px-2 py-3">
+                            {{this.questionText}}
+                        </th>
+                        {{/each}}
+                        <th scope="col" class="px-2 py-3">
+                            remarks
+                        </th>
+                        <th scope="col" class="px-2 py-3">
+                            Date
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td class="px-2 py-1">
+                            {{this.district}}
+                        </td>
+                        <td class="px-2 py-1">
+                            {{this.stationName}}
+                        </td>
+                        {{#each this.feedback}}
+                        <td class="px-2 py-1">
+                            {{this.response}}
+                        </td>
+                        {{/each}}
+                        <td class="px-2 py-1">
+                            {{this.remarks}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea deleniti beatae
+                            nihil eaque repellat
+                            iure commodi distinctio autem recusandae omnis.
+                        </td>
+                        <td class="px-2 py-1">
+                            {{this.date}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center">
+            <div class="flex flex-col items-center">
+                <div class="inline-flex mt-2 xs:mt-0">
+                    {{#if (gt currentPage 1)}}
+                    <form method="get" action="/viewFeedbacks" class="mr-2">
+                        <input type="hidden" name="page" value="{{subtract currentPage 1}}">
+                        <button type="submit"
+                            class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Prev
+                        </button>
+                    </form>
+                    {{/if}}
+                    {{#if (lt (add currentPage 1) totalPages)}}
+                    <form method="get" action="/viewFeedbacks">
+                        <input type="hidden" name="page" value="{{add currentPage 1}}">
+                        <button type="submit"
+                            class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Next
+                        </button>
+                    </form>
+                    {{/if}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{>footer}}

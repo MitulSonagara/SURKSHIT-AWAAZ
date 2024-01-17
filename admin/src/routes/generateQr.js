@@ -52,7 +52,7 @@ router.post("/generateQr", async (req, res) => {
         }
     });
 
-})
+}) 
 
 // Define a route to send the PDF for download
 router.get('/downloadPdf',async (req, res) => {

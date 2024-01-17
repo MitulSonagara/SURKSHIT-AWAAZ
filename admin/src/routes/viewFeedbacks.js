@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const FeedbackResponses = require("../models/feedbackResponses")
-const FeedbackQuestion = require('../models/feedbackQuestion');
-const stations = require("../models/stations")
+const FeedbackQuestion = require('../models/feedbackQuestion')
 const moment = require('moment-timezone');
 // const connectEnsureLogin = require('connect-ensure-login');
 
@@ -93,8 +92,7 @@ router.get('/viewFeedbacks', async (req, res) => {
         },
     ]);
 
-    console.log(feedbacks)
-
+    // console.log(feedbacks)
     res.render('viewFeedbacks', { feedbacks, questions, currentPage, totalPages,"cPage":currentPage });
 });
 

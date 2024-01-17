@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-const station = require("./stations")
+const stationSchema = require("./stations")
 const moment = require('moment-timezone');
 
 const feedbackResponseSchema = new mongoose.Schema({
     stationId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: station
+        type: String,
+        ref: "station"
     },
     feedback: [
         {

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-const station = require("./stations")
+const stationSchema = require("./stations")
 const moment = require('moment-timezone');
 
 const feedbackResponseSchema = new mongoose.Schema({
     stationId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: station
+        ref: "station"
     },
     feedback: [
         {
@@ -28,7 +28,7 @@ feedbackResponseSchema.pre('save', function (next) {
     const currentDatetime = moment().tz(indianTimezone).format('DD-MM-YYYY HH:mm:ss');
 
     this.date = currentDatetime.split(' ')[0];
-    this.time = currentDatetime.split(' ')[1];
+    this.time = currentDatetime.split(' ')[1];  
 
     next();
 });

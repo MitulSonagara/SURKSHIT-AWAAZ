@@ -1,10 +1,12 @@
 const express = require("express")
 const router = express.Router()
 const FeedbackQuestion = require('../models/feedbackQuestions');
-const feedbackResponses = require("../models/feedbackResponses")
+const feedbackResponses = require("../models/feedbackResponses2")
 const stations = require("../models/stations")
 const { execSync } = require('child_process');
 const mongoose = require("mongoose");
+
+const { Types } = mongoose;
 
 router.get("/giveFeedback", async (req, res) => {
     try {
@@ -12,7 +14,7 @@ router.get("/giveFeedback", async (req, res) => {
 
         const questions = await FeedbackQuestion.find()
         // console.log(questions)
-        res.render('giveFeedback', { questions,  districts });
+        res.render('giveFeedback', { questions, districts });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -32,11 +34,13 @@ router.get('/stations', async (req, res) => {
 
 
 // Example route for handling feedback submission
-router.post('/feedback', async (req, res) => {
+router.post('/giveFeedback', async (req, res) => {
     const feedbackData = req.body.questions;
     const { remarks } = req.body;
     const stationData = await stations.findOne({ name: req.body.station })
-    const stationId = stationData.stationId
+    // console.log(stationData)
+    const id = stationData.stationId
+    // console.log(id)
 
     const feedbackArray = [];
 
@@ -55,11 +59,13 @@ router.post('/feedback', async (req, res) => {
     const sentimentLabel = stdout.trim();
 
     const feedbackDocument = new feedbackResponses({
-        stationId,
+        stationId:id,
         feedback: feedbackArray,
         remarks,
         type: sentimentLabel,
     });
+
+    // console.log(feedbackDocument)
 
     await feedbackDocument.save()
     res.send("thanks");

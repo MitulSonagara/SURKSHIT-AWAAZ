@@ -34,6 +34,15 @@ app.use(passport.session());
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 hbs.registerPartials('views/partials');
+hbs.registerHelper('gt', function (v1, v2) {
+    return v1 > v2;
+});
+hbs.registerHelper('add', function (v1, v2) {
+    return v1 + v2;
+});
+hbs.registerHelper('lt', function (v1, v2) {
+    return v1 < v2;
+});
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());

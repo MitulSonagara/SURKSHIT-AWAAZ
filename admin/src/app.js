@@ -15,7 +15,6 @@ const loginRoute = require("./routes/login")
 const Admin = require("./models/authorities")
 const generateQrRoute = require("./routes/generateQr")
 const viewGraphsRoute = require("./routes/viewGraphs")
-const reportRoute = require("./routes/reports")
 
 const app = express();
 
@@ -91,7 +90,6 @@ app.use("", loginRoute)
 app.use("", viewFeedbacksRoute)
 app.use("", generateQrRoute)
 app.use("", viewGraphsRoute)
-app.use("", reportRoute)
 
 mongoose.connect( 
     process.env.MONGO_URL)

@@ -35,7 +35,8 @@ router.get('/stations', async (req, res) => {
 router.post('/feedback', async (req, res) => {
     const feedbackData = req.body.questions;
     const { remarks } = req.body;
-    const stationId = req.body.stationId
+    const stationData = await stations.findOne({ name: req.body.station })
+    const stationId = stationData.stationId
 
     const feedbackArray = [];
 

@@ -33,4 +33,4 @@ feedbackResponseSchema.pre('save', function (next) {
     next();
 });
 
-module.exports = mongoose.model('feedbackResponses', feedbackResponseSchema);
+module.exports = mongoose.model('feedbackResponses2', feedbackResponseSchema);

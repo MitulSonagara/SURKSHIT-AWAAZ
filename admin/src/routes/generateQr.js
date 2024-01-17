@@ -33,7 +33,7 @@ router.post("/generateQr", async (req, res) => {
     const stationData = await Station.findOne({ "name": stationName })
     const stationId = stationData.id
 
-    const url = 'https://www.facebook.com'
+    const url = `https://surakshit-awaaz-1.onrender.com/?stationId=${stationId}`
 
     qr.toDataURL(url, (err, url) => {
         if (err) throw err;

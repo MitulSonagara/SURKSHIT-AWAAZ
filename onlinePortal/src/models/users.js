@@ -6,10 +6,7 @@ const userSchema = mongoose.Schema({
     name: String,
     password: String,
     email: String,
-
-    // New fields for password reset
-    resetToken: String,
-    resetTokenExpires: Date,
+    phoneNumber : String,
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

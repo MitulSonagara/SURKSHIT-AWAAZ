@@ -21,6 +21,7 @@ router.post('/signup', async (req, res, next) => {
         const newUser = new User({
             name: req.body.name,
             email: req.body.email,
+            phoneNumber : req.body.phoneNumber
         });
 
         User.register(newUser, req.body.password, (err) => {

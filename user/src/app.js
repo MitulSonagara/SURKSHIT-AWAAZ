@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
-const feedbackRoute = require("./src/routes/feedback")
+const feedbackRoute = require("./routes/feedback")
 require('dotenv').config()
 
 const app = express();

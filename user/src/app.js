@@ -23,18 +23,21 @@ async function startServer() {
         await mongoose.connect(process.env.MONGO_URL);
         console.log("Connected to MongoDB");
 
+        const PORT = process.env.PORT || 5000
+
         app.listen(PORT, () => {
             console.log(`Server started at http://localhost:${PORT}`);
         });
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
     }
-}
+} 
 
 startServer();
 
-const PORT = process.env.PORT || 4040
+// const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
-    console.log("server started at http://localhost:4040");
-})
+// app.listen(PORT, () => { 
+//     console.log("server started at http://localhost:5000");
+// })
+ 

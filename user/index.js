@@ -32,5 +32,3 @@ const PORT = process.env.PORT || 4040
 app.listen(PORT, () => {
     console.log("server started at http://localhost:4040");
 })
-
-module.exports=app

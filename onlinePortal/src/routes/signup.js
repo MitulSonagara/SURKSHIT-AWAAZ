@@ -30,7 +30,7 @@ router.post('/signup', async (req, res, next) => {
                 return next(err);
             }
             // Registration successful, redirect to login page
-            res.redirect(`/login`);
+            res.redirect(`/giveFeedback`);
         });
     } catch (error) {
         console.error(error);

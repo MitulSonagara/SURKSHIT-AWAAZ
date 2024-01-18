@@ -68,7 +68,7 @@ router.post('/giveFeedback', async (req, res) => {
     // console.log(feedbackDocument)
 
     await feedbackDocument.save()
-    res.send("thanks");
+    res.redirect("/viewHistory");
 });
 
 module.exports = router

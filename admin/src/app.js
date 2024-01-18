@@ -16,6 +16,7 @@ const Admin = require("./models/authorities")
 const generateQrRoute = require("./routes/generateQr")
 const viewGraphsRoute = require("./routes/viewGraphs")
 const heatmapRoute = require("./routes/heatmap")
+const surveyRoute = require("./routes/createSurvey")
 
 const app = express();
 
@@ -92,6 +93,7 @@ app.use("", viewFeedbacksRoute)
 app.use("", generateQrRoute)
 app.use("", viewGraphsRoute)
 app.use("", heatmapRoute)
+app.use("", surveyRoute)
 
 mongoose.connect( 
     process.env.MONGO_URL)

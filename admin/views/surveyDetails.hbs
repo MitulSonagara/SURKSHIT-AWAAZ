@@ -1,0 +1,37 @@
+{{>header}}
+{{>sidebar}}
+
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        <h1
+            class="mb-6 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+            {{survey.title}}</h1>
+        <div class="relative border rounded-lg dark:border-gray-600 overflow-x-auto mb-2">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        {{#each survey.questions}}
+                        <th scope="col" class="px-2 py-3">
+                            {{this}}
+                        </th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each responses}}
+                    <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                        {{#each this.answers}}
+                        <td class="px-2 py-1">
+                            {{this.answer}}
+                        </td>
+                        {{/each}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{{>footer}}
